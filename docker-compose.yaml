@@ -1,0 +1,29 @@
+version: '3' #phiên bản docker-compose.yaml
+services: #docker build, docker run, port, gắn volume,...
+  build_backend:
+    container_name: build_backend
+    build: ./backend
+    ports: 
+      - 8088:8088
+    volumes:
+      - demo-volume:/root
+      
+
+
+  build_landing_page:
+    container_name: landing_page
+    build: ./landing_page
+    ports: 
+      - 8081:80
+ 
+volumes:
+  demo-volume: 
+    driver: local
+
+networks:
+  new-network:
+   external: true
+
+#docker-compose up -d
+#docker-compose down (xóa container, network, volume, image)
+#docker-compose build (build lại image)
